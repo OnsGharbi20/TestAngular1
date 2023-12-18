@@ -1,0 +1,81 @@
+<app-header></app-header>
+
+<div style="padding-top: 150px">
+ 
+    
+    <div class="site-section">
+    <div class="container">
+        <div class="form-group">
+            <input routerLink="/add-user" class="btn btn-primary py-3 px-5" value="Add User">
+          </div>
+      <div class="widget-next-match">
+        
+        <table class="table custom-table">
+          <thead>
+            <tr>
+              <th>Numéro</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Age</th>
+              <th>Civilite</th>
+              <th>Rôle</th>
+              <th>Modifier</th>
+              <th>Supprimer</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+           
+            <tr *ngFor=" let user of users">
+              <td>{{user.id}}</td>
+              
+
+              <td>
+                <span *ngIf="user.edit ; else editNom">{{ user.nom }}</span>
+                <ng-template #editNom>
+                  <input [(ngModel)]="user.nom" />
+                </ng-template>
+              </td>
+              <td>
+                <span *ngIf="user.edit ; else editPrenom">{{ user.prenom }}</span>
+                <ng-template #editPrenom>
+                  <input [(ngModel)]="user.prenom" />
+                </ng-template>
+              </td>
+             
+              <td>
+                <span *ngIf="user.edit ; else editAge">{{ user.age }}</span>
+                <ng-template #editAge>
+                  <input [(ngModel)]="user.age" />
+                </ng-template>
+              </td>
+
+             
+              
+              <td>
+                <span *ngIf="user.edit ; else editCivilite">{{ user.civilite }}</span>
+                <ng-template #editCivilite>
+                  <input [(ngModel)]="user.civilite" />
+                </ng-template>
+              </td>
+              <td>
+                <span *ngIf="user.edit ; else editRole">{{ user.role }}</span>
+                <ng-template #editRole>
+                  <input [(ngModel)]="user.role" />
+                </ng-template>
+              </td>
+            
+              <td>
+                <button type="submit" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+              </td>
+              <td>
+                <button type="submit" class="btn btn-info" (click)="editUser(user.id)">Edit</button>
+              </td>
+            </tr>
+          
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
